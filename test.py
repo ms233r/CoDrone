@@ -1,21 +1,29 @@
 import CoDrone
 
-drone = CoDrone.CoDrone()
+class Connection:
 
-def connect():
-    """Connect to drone with BLE."""
-    print("Start Pairing with BLE boar ...")
-    drone.pair(drone.Nearest)
-    print("Drone paired with BLE board")
+    def __init__(self):
+        self.drone = CoDrone.CoDrone()
 
-def disconnect():
-    drone.disconnect()
-    print("Drone disconnected from BLE board")
+    def connect(self):
+        """Connect to drone"""
+        self.drone.pair('7852', 'COM5')
+        print("Drone paired with BLE board")
 
-def conn_dance():
-    drone.takeoff()
-    drone.hover(1)
-    drone.land()
+    def disconnect(self):
+        self.drone.disconnect()
+        print("Drone disconnected from BLE board")
+
+    def calibrate(self):
+        self.drone.calibrate()
+
+    def connection_test(self):
+        self.drone.takeoff()
+        self.drone.hover(3)
+        self.drone.land()
 
 if __name__ == '__main__':
-    conn_dance()
+    object = Connection()
+    if object.drone.pair != True:
+        object.connect()
+    object.connection_test()
