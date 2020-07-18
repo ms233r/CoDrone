@@ -1,3 +1,4 @@
-.DS_Store
-PairInfo
-.pylint.d
+
+#Other
+package/PairInfo
+
